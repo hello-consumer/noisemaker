@@ -1,0 +1,16 @@
+{
+    "short_name": "noisemaker",
+    "name": "Coding Temple Noisemaker",
+    "icons": [
+      {
+        "src": "icon.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#45a2da",
+    "display": "standalone",
+    "scope": "/noisemaker/",
+    "theme_color": "#45a2da"
+  }
