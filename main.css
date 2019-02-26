@@ -3,3 +3,30 @@ body{
     height: 100vh;
     width: 100vw;
 }
+
+.keyboard{
+    display: flex;
+    justify-content: space-around;
+}
+
+.key{
+    border: 1px solid grey;
+    width: calc(100vw/13);
+    height: calc(100vw/13);
+}
+
+.pressed{
+    background-image: radial-gradient(blue, white);
+    animation-name: pressedkey;
+    animation-duration: 1000ms;
+    
+}
+
+@keyframes pressedkey{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
