@@ -1,11 +1,15 @@
-(function () {
-    var audioCtx, oscillator;
+
+    var audioCtx, oscillator, filter;
     var initialized = false;
 
     function initialize() {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         oscillator = audioCtx.createOscillator();
         oscillator.start();
+
+        filter = audioCtx.createBiquadFilter();
+
+        oscillator.connect(filter);
 
         oscillator2 = audioCtx.createOscillator();
         oscillator2.frequency.value = 0;
@@ -22,12 +26,12 @@
 
         this.classList.add('pressed');
         oscillator.frequency.value = this.attributes.getNamedItem('data-pitch').nodeValue;
-        oscillator.connect(audioCtx.destination);
+        filter.connect(audioCtx.destination);
     }
 
     function toggleOscillatorOff() {
         this.classList.remove('pressed')
-        oscillator.disconnect(audioCtx.destination);
+        filter.disconnect(audioCtx.destination);
     }
 
     window.addEventListener('load', function () {
@@ -53,6 +57,12 @@
             }
             oscillator.type = this.value;
         });
+        document.querySelector("#filter").addEventListener('input', function(){
+            if (!initialized) {
+                initialize();
+            }
+            filter.frequency.value = this.value;
+        });
     })
 
     if ('serviceWorker' in navigator) {
@@ -66,4 +76,3 @@
             });
         });
     }
-}());
