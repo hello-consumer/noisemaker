@@ -40,6 +40,10 @@
                 keys[i].addEventListener('touchend', toggleOscillatorOff);
             }
         }
+
+        document.querySelector("#wave").addEventListener('change', function(){
+            oscillator.type = this.value;
+        });
     })
 
     if ('serviceWorker' in navigator) {
