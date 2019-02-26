@@ -6,6 +6,12 @@
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         oscillator = audioCtx.createOscillator();
         oscillator.start();
+
+        oscillator2 = audioCtx.createOscillator();
+        oscillator2.frequency.value = 0;
+        oscillator2.start();
+        oscillator2.connect(audioCtx.destination);
+
         initialized = true;
     }
 
@@ -42,6 +48,9 @@
         }
 
         document.querySelector("#wave").addEventListener('change', function(){
+            if (!initialized) {
+                initialize();
+            }
             oscillator.type = this.value;
         });
     })
