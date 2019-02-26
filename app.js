@@ -26,12 +26,19 @@
 
     window.addEventListener('load', function () {
         var keys = document.querySelectorAll(".key");
-        for (var i = 0; i < keys.length; i++) {
-            keys[i].setAttribute("data-pitch", 440 * Math.pow(2, (i / keys.length)));
-            keys[i].addEventListener('mousedown', toggleOscillatorOn);
-            keys[i].addEventListener('mouseup', toggleOscillatorOff);
-            keys[i].addEventListener('touchstart', toggleOscillatorOn);
-            keys[i].addEventListener('touchend', toggleOscillatorOff);
+        var octaves = Math.ceil(keys.length / 12);
+        for(var j= 1; j <= octaves; j++){
+            var refPitch = 220 * j;
+        
+            for (var i = (j - 1) * 12; i < keys.length; i++) {
+
+
+                keys[i].setAttribute("data-pitch", refPitch * Math.pow(2, ((i % 12) / 12)));
+                keys[i].addEventListener('mousedown', toggleOscillatorOn);
+                keys[i].addEventListener('mouseup', toggleOscillatorOff);
+                keys[i].addEventListener('touchstart', toggleOscillatorOn);
+                keys[i].addEventListener('touchend', toggleOscillatorOff);
+            }
         }
     })
 
