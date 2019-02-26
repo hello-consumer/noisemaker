@@ -36,8 +36,8 @@
                 keys[i].setAttribute("data-pitch", refPitch * Math.pow(2, ((i % 12) / 12)));
                 keys[i].addEventListener('mousedown', toggleOscillatorOn);
                 keys[i].addEventListener('mouseup', toggleOscillatorOff);
-                keys[i].addEventListener('touchstart', toggleOscillatorOn);
-                keys[i].addEventListener('touchend', toggleOscillatorOff);
+                keys[i].addEventListener('touchstart', toggleOscillatorOn, {passive: true});
+                keys[i].addEventListener('touchend', toggleOscillatorOff, {passive: true});
             }
         }
 
