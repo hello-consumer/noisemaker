@@ -1,4 +1,4 @@
-
+(function(){
     var audioCtx, oscillator, filter;
     var initialized = false;
 
@@ -76,3 +76,4 @@
             });
         });
     }
+}())
